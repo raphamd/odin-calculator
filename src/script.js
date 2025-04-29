@@ -81,6 +81,14 @@ function setupInterface() {
           operation.firstOperand = roundedResult;
         }
       }
+
+      if (buttonType === "clear") {
+        operation.firstOperand = '';
+        operation.secondOperand = '';
+        operation.operator = '';
+
+        displayText.textContent = 0;
+      }
     });  
   }
 
