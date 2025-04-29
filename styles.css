@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-weight: normal;
+  src: url('fonts/IBMPlexSans-Regular.ttf');
+}
+
 @keyframes blink {
   0% {opacity: 0;}
   100% {opacity: 1;}
@@ -17,6 +23,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #020618;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 .calculator {
@@ -24,8 +32,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px;
-  background-color: black;
+  padding: 15px 10px;
+  border-radius: 5px;
+  background-color: #1e1a4d;
 }
 
 .calculator .display {
@@ -36,7 +45,8 @@ body {
   align-items: center;
   padding: 10px;
   font-size: 24px;
-  background-color: white;
+  border-radius: 5px;
+  background-color: #eff6ff;
 }
 
 .calculator .display-text {
@@ -75,13 +85,14 @@ body {
 }
 
 .calculator .button {
+  color: #eff6ff;
   width: 50px;
   height: 50px;
   line-height: 50px;
   font-size: 24px;
   border: none;
   border-radius: 5px;
-  background-color: orange;
+  background-color: #615fff;
   transition: all 0.1s ease-in-out;
 }
 
@@ -93,8 +104,9 @@ body {
   filter: brightness(70%);
 }
 
-.calculator .button.operator {
-  background-color: darkorange;
+.calculator .button.operator,
+.calculator .button.result  {
+  background-color: #155dfc;
 }
 
 .calculator .button.clear {
