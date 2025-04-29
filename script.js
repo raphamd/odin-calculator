@@ -33,16 +33,15 @@ function setupInterface() {
         
         const operand = button.textContent;
         const isOperatorSelected = operation.operator;
-        const isSecondOperandSelected = operation.secondOperand !== '';
-
+   
         const setFirstOperand = function(){
-          operation.firstOperand = BigInt(operation.firstOperand + operand);
-          displayText.textContent = BigInt(displayText.textContent + operand);
+          operation.firstOperand = Number(operation.firstOperand + operand);
+          displayText.textContent = Number(displayText.textContent + operand);
         }
       
         const setSecondOperand = function(){
-          operation.secondOperand = BigInt(operation.secondOperand + operand);
-          displayText.textContent = 0n;
+          operation.secondOperand = Number(operation.secondOperand + operand);
+          displayText.textContent = 0;
           displayText.textContent = operation.secondOperand;
         }
 
@@ -76,8 +75,10 @@ function setupInterface() {
             operation.secondOperand
           );
   
-          displayText.textContent = result;
-          operation.firstOperand = result;
+          const roundedResult = Math.floor(result * 10000) / 10000;
+
+          displayText.textContent = roundedResult;
+          operation.firstOperand = roundedResult;
         }
       }
     });  
