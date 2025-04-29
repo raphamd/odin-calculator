@@ -34,14 +34,22 @@ function setupInterface() {
         const operand = button.textContent;
         const isOperatorSelected = operation.operator;
 
-        if (!isOperatorSelected) {
+        const setFirstOperand = function(){
           operation.firstOperand = BigInt(operation.firstOperand + operand);
           displayText.textContent = BigInt(displayText.textContent + operand);
+        }
+      
+        const setSecondOperand = function(){
+          operation.secondOperand = BigInt(operation.secondOperand + operand);
+          displayText.textContent = 0n;
+          displayText.textContent = operation.secondOperand;
+        }
+
+        if (!isOperatorSelected) {
+          setFirstOperand();
         } 
         else {
-          operation.secondOperand = BigInt(operation.secondOperand + operand);
-          displayText.textContent = 0;
-          displayText.textContent = operation.secondOperand;
+          setSecondOperand();
         }
       }
 
@@ -50,14 +58,22 @@ function setupInterface() {
       }
 
       if (buttonType === "result") {
-        const result = operate(
-          operation.operator,
-          operation.firstOperand,
-          operation.secondOperand
-        );
+        const isValidOperation = 
+          operation.firstOperand !== '' &&
+          operation.operator !== '' &&
+          operation.secondOperand !== '';
 
-        displayText.textContent = result;
-        operation.firstOperand = result;
+        
+        if (isValidOperation) {
+          const result = operate(
+            operation.operator,
+            operation.firstOperand,
+            operation.secondOperand
+          );
+  
+          displayText.textContent = result;
+          operation.firstOperand = result;
+        }
       }
     });  
   }
