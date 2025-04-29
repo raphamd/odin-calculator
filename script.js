@@ -3,6 +3,12 @@ const sub = (a,b) => a - b;
 const div = (a,b) => a / b;
 const mul = (a,b) => a * b;
 
+const operation = {
+  operator: '',
+  firstOperand: '',
+  secondOperand: '',
+};
+
 function operate(operator, foperand, soperand) {
   switch (operator) {
     case '+': return sum(foperand,soperand);
@@ -24,8 +30,34 @@ function setupInterface() {
       const buttonType = buttonClass.split(' ')[1];
 
       if (buttonType === "number") {
-        // Convert to bigInt to remove the zero at the beginning and allow big operations
-        displayText.textContent = BigInt(displayText.textContent + button.textContent);
+        
+        const operand = button.textContent;
+        const isOperatorSelected = operation.operator;
+
+        if (!isOperatorSelected) {
+          operation.firstOperand = BigInt(operation.firstOperand + operand);
+          displayText.textContent = BigInt(displayText.textContent + operand);
+        } 
+        else {
+          operation.secondOperand = BigInt(operation.secondOperand + operand);
+          displayText.textContent = 0;
+          displayText.textContent = operation.secondOperand;
+        }
+      }
+
+      if (buttonType === "operator") {
+        operation.operator = button.textContent;
+      }
+
+      if (buttonType === "result") {
+        const result = operate(
+          operation.operator,
+          operation.firstOperand,
+          operation.secondOperand
+        );
+
+        displayText.textContent = result;
+        operation.firstOperand = result;
       }
     });  
   }
