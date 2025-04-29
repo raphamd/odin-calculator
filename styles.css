@@ -1,0 +1,87 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: black;
+}
+
+.calculator .display {
+  width: 230px;
+  height: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 10px;
+  font-size: 24px;
+  background-color: white;
+}
+
+.calculator .buttons-top {
+  display: flex;
+  gap: 10px;
+}
+
+.calculator .buttons-bottom {
+  display: flex;
+  gap: 10px;
+}
+
+.calculator .buttons-bottom .buttons-left {
+  width: 170px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: 10px;
+}
+
+.calculator .buttons-bottom .buttons-right {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calculator .button {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  border: none;
+  background-color: orange;
+  transition: all 0.1s ease-in-out;
+}
+
+.calculator .button:hover {
+  filter: brightness(70%);
+}
+
+.calculator .button.operator {
+  background-color: darkorange;
+}
+
+.calculator .button.clear {
+  width: 170px;
+  background-color: rgb(212, 42, 42);
+}
+
+.calculator .button.point {
+  width: 110px;
+}
