@@ -19,6 +19,7 @@ function operate(operator, foperand, soperand) {
 }
 
 function setupInterface() {
+  const calculator = document.querySelector('.calculator');
   const buttons = document.querySelector('.buttons');
   const displayText = document.querySelector('.display-text')
 
@@ -67,8 +68,16 @@ function setupInterface() {
           operation.operator !== '' &&
           operation.secondOperand !== '';
 
-        
         if (isValidOperation) {
+          const isDivisionByZero = 
+            (operation.firstOperand === 0 ||
+            operation.secondOperand === 0) && 
+            operation.operator === '/';
+
+          if (isDivisionByZero) {
+            return displayText.textContent = 'Division by zero?';
+          }
+          
           const result = operate(
             operation.operator,
             operation.firstOperand,

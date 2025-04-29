@@ -85,6 +85,10 @@ body {
   transition: all 0.1s ease-in-out;
 }
 
+.calculator .button.number:last-child {
+  width: 170px;
+}
+
 .calculator .button:hover {
   filter: brightness(70%);
 }
@@ -96,10 +100,6 @@ body {
 .calculator .button.clear {
   width: 170px;
   background-color: rgb(212, 42, 42);
-}
-
-.calculator .button.dot {
-  width: 110px;
 }
 
 .calculator:has(.button:active) .display-text {
