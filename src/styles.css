@@ -34,6 +34,16 @@ body {
   background-color: white;
 }
 
+.calculator .display-text {
+  overflow: hidden;
+}
+
+.calculator .buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .calculator .buttons-top {
   display: flex;
   gap: 10px;
@@ -82,6 +92,6 @@ body {
   background-color: rgb(212, 42, 42);
 }
 
-.calculator .button.point {
+.calculator .button.dot {
   width: 110px;
 }
