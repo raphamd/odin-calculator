@@ -33,6 +33,7 @@ function setupInterface() {
         
         const operand = button.textContent;
         const isOperatorSelected = operation.operator;
+        const isSecondOperandSelected = operation.secondOperand !== '';
 
         const setFirstOperand = function(){
           operation.firstOperand = BigInt(operation.firstOperand + operand);
@@ -55,6 +56,10 @@ function setupInterface() {
 
       if (buttonType === "operator") {
         operation.operator = button.textContent;
+
+        if (operation.secondOperand !== '') {
+          operation.secondOperand = '';
+        }
       }
 
       if (buttonType === "result") {
