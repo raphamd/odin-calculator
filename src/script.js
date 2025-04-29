@@ -19,7 +19,6 @@ function operate(operator, foperand, soperand) {
 }
 
 function setupInterface() {
-  const calculator = document.querySelector('.calculator');
   const buttons = document.querySelector('.buttons');
   const displayText = document.querySelector('.display-text')
 
@@ -30,7 +29,12 @@ function setupInterface() {
       const buttonClass = button.className;
       const buttonType = buttonClass.split(' ')[1];
 
-      if (buttonType === "number") {
+      const isNumericButton = buttonType === "number";
+      const isOperatorButton = buttonType === "operator";
+      const isResultButton = buttonType === "result";
+      const isClearButton = buttonType === "clear";
+
+      if (isNumericButton) {
         
         const operand = button.textContent;
         const isOperatorSelected = operation.operator;
@@ -54,21 +58,22 @@ function setupInterface() {
         }
       }
 
-      if (buttonType === "operator") {
+      if (isOperatorButton) {
         operation.operator = button.textContent;
-
+        
         if (operation.secondOperand !== '') {
           operation.secondOperand = '';
         }
       }
 
-      if (buttonType === "result") {
+      if (isResultButton) {
         const isValidOperation = 
           operation.firstOperand !== '' &&
           operation.operator !== '' &&
           operation.secondOperand !== '';
 
         if (isValidOperation) {
+          
           const isDivisionByZero = 
             (operation.firstOperand === 0 ||
             operation.secondOperand === 0) && 
@@ -91,7 +96,7 @@ function setupInterface() {
         }
       }
 
-      if (buttonType === "clear") {
+      if (isClearButton) {
         operation.firstOperand = '';
         operation.secondOperand = '';
         operation.operator = '';
