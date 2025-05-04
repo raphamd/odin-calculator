@@ -1,8 +1,16 @@
+const SUM = '+';
+const SUB = '-';
+const DIV = '/';
+const MUL = '*';
+
 const sum = (a,b) => a + b;
 const sub = (a,b) => a - b;
 const div = (a,b) => a / b;
 const mul = (a,b) => a * b;
 
+// I used a object to control the operation flow.
+// All operands and operations defined as blank string
+// means that the operand or operator is not defined.
 const operation = {
   operator: '',
   firstOperand: '',
@@ -11,10 +19,10 @@ const operation = {
 
 function operate(operator, foperand, soperand) {
   switch (operator) {
-    case '+': return sum(foperand,soperand);
-    case '-': return sub(foperand,soperand);
-    case '/': return div(foperand,soperand);
-    case '*': return mul(foperand,soperand);
+    case SUM: return sum(foperand,soperand);
+    case SUB: return sub(foperand,soperand);
+    case DIV: return div(foperand,soperand);
+    case MUL: return mul(foperand,soperand);
   }
 }
 
@@ -39,15 +47,23 @@ function setupInterface() {
         const operand = button.textContent;
         const isOperatorSelected = operation.operator;
    
-        const setFirstOperand = function(){
+        const setFirstOperand = function() {
           operation.firstOperand = Number(operation.firstOperand + operand);
           displayText.textContent = Number(displayText.textContent + operand);
         }
       
-        const setSecondOperand = function(){
+        const setSecondOperand = function() {
           operation.secondOperand = Number(operation.secondOperand + operand);
           displayText.textContent = 0;
           displayText.textContent = operation.secondOperand;
+        }
+
+        const clearOperation = function() {
+          operation.firstOperand = '';
+          operation.secondOperand = '';
+          operation.operator = '';
+
+          displayText.textContent = 0;
         }
 
         if (!isOperatorSelected) {
@@ -59,9 +75,11 @@ function setupInterface() {
       }
 
       if (isOperatorButton) {
+        const isSecondOperandFilled = operation.secondOperand !== '';
+        
         operation.operator = button.textContent;
         
-        if (operation.secondOperand !== '') {
+        if (isSecondOperandFilled) {
           operation.secondOperand = '';
         }
       }
@@ -73,7 +91,6 @@ function setupInterface() {
           operation.secondOperand !== '';
 
         if (isValidOperation) {
-          
           const isDivisionByZero = 
             (operation.firstOperand === 0 ||
             operation.secondOperand === 0) && 
@@ -97,11 +114,7 @@ function setupInterface() {
       }
 
       if (isClearButton) {
-        operation.firstOperand = '';
-        operation.secondOperand = '';
-        operation.operator = '';
-
-        displayText.textContent = 0;
+        clearOperation();
       }
     });  
   }
