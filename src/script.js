@@ -57,15 +57,7 @@ function setupInterface() {
           displayText.textContent = 0;
           displayText.textContent = operation.secondOperand;
         }
-
-        const clearOperation = function() {
-          operation.firstOperand = '';
-          operation.secondOperand = '';
-          operation.operator = '';
-
-          displayText.textContent = 0;
-        }
-
+        
         if (!isOperatorSelected) {
           setFirstOperand();
         } 
@@ -114,7 +106,11 @@ function setupInterface() {
       }
 
       if (isClearButton) {
-        clearOperation();
+        operation.firstOperand = '';
+        operation.secondOperand = '';
+        operation.operator = '';
+
+        displayText.textContent = 0;
       }
     });  
   }
